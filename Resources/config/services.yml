@@ -1,0 +1,7 @@
+services:
+    kernel.listener.outlandish.unhook:
+        class: Outlandish\RoutemasterBundle\EventListener\UnhookListener
+        tags:
+            - name: kernel.event_listener
+              event: kernel.request
+              method: onKernelRequest

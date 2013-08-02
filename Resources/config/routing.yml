@@ -1,0 +1,4 @@
+outlandish_users:
+    resource: "@RoutemasterBundle/Controller/DefaultController.php"
+    prefix: /
+    type: annotation
