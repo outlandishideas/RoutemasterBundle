@@ -3,22 +3,22 @@ Routemaster Bundle for WordPress
 
 **Use WordPress as the CMS backend for your Symfony application.**
 
-Install
--------
+Installation
+------------
 
-### Add to `composer.json`
+### 1. Add to `composer.json`
 
 	"require": {
-	    "outlandish/oowp": "dev-master",
+	    "outlandish/routemaster-bundle": "dev-master",
 	},
 	"repositories": [
 	    {
 	        "type": "vcs",
-	        "url": "ssh://tsr@beta.gd:7777/var/projects/lib/oowp.git"
+	        "url": "https://github.com/outlandishideas/RoutemasterBundle.git"
 	    }
 	]
 
-### Add WordPress installer script (optional)
+### 2. Add WordPress installer script
 
 Until a way is found to allow Composer to install and manage WordPress, this script can be used
 to ensure WordPress is present:
@@ -32,20 +32,21 @@ to ensure WordPress is present:
 	    ]
 	},
 
-### Run `composer update`
+### 3. Run `composer update`
 
-### Add to `AppKernel.php`
+### 4. Add to `AppKernel.php`
 
 	public function registerBundles()
 	{
 	    $bundles = array(
+			//...
 	        new Outlandish\RoutemasterBundle\RoutemasterBundle(),
 	    );
 
 	    return $bundles;
 	}
 
-### Load WordPress in your front controller
+### 5. Load WordPress in your front controller
 
 	<?php
 
@@ -58,4 +59,4 @@ to ensure WordPress is present:
 	require_once __DIR__ . '/../app/autoload.php';
     require_once __DIR__ . '/../app/AppKernel.php';
 
-	...
+	//...
