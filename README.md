@@ -3,6 +3,10 @@ Routemaster Bundle for WordPress
 
 **Use WordPress as the CMS backend for your Symfony application.**
 
+**NOTE**: Currently assumes the presence of the OOWP WordPress plugin which has not yet been released publicly.
+Until then, this is only of use to Outlandish staff and freelancers. Keep checking back for updates.
+
+
 Installation
 ------------
 
@@ -60,3 +64,30 @@ to ensure WordPress is present:
     require_once __DIR__ . '/../app/AppKernel.php';
 
 	//...
+
+## Usage notes
+
+### Routing
+
+Use [Countroller](http://symfony.com/doc/current/book/controller.html) and [Routing](http://symfony.com/doc/current/book/routing.html)
+components as you would in a normal Symfony application. The front controller `web/index.php` loads WordPress before
+booting Symfony which means standard WordPress functions and classes such as [WP_Query](http://codex.wordpress.org/Class_Reference/WP_Query)
+are available in your Symfony controllers.
+
+### Database
+
+It is recommended (for performance and simplicity) to use WordPress's `$wpdb` global if you require direct database
+access but you could also use Doctrine or another ORM.
+
+### Caching
+
+Caching is best handled by WordPress. Since WP is loaded first, a cache hit means that Symfony is not loaded at all.
+
+### Plugins
+
+Most WordPress plugins will continue to work, especially those that mainly affect the admin side. If in doubt, try it
+and see. It is recommended to use Composer and [WPackagist](http://wpackagist.org) for plugin management.
+
+### Themes
+
+Normal WordPress themes will not work here. But you knew that, right?
