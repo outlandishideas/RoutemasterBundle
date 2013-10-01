@@ -14,7 +14,7 @@ class WordPressInstaller {
 		define('WORDPRESS_FILE_URI', 'http://wordpress.org/latest.zip');
 
 		if (file_exists($webDir.'/wp-load.php')) {
-			echo 'Found wp-load.php in web root. Aborting.\n';
+			echo 'Found wp-load.php in web root. Aborting.';
 			return;
 		}
 
