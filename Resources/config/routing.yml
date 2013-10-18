@@ -1,4 +1,4 @@
 outlandish_users:
-    resource: "@RoutemasterBundle/Controller/DefaultController.php"
+    resource: "@RoutemasterBundle/Controller/FeedController.php"
     prefix: /
     type: annotation
