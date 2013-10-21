@@ -44,7 +44,7 @@ to ensure WordPress is present:
 	{
 	    $bundles = array(
 			//...
-	        new Outlandish\RoutemasterBundle\RoutemasterBundle(),
+	        new Outlandish\RoutemasterBundle\OutlandishRoutemasterBundle(),
 	    );
 
 	    return $bundles;
