@@ -17,7 +17,7 @@ class FeedController extends BaseController {
     public function sitemap() {
         $pageItems = new \ooWP_Query(array('post_type' => 'any', 'orderby' => 'date'));
 
-	    $content = $this->renderView('OutlandishRoutemasterBundle:Default:sitemap.xml.php', array('pageItems' => $pageItems));
+	    $content = $this->renderView('OutlandishRoutemasterBundle:Feed:sitemap.xml.php', array('pageItems' => $pageItems));
 	    return new Response($content, 200, array('Content-type' => 'text/xml'));
     }
 
@@ -28,7 +28,7 @@ class FeedController extends BaseController {
 	public function feedAction() {
 		$pageItems = array(); //provide your post items here
 
-		$content = $this->renderView('OutlandishRoutemasterBundle:Default:feed.xml.php', array(
+		$content = $this->renderView('OutlandishRoutemasterBundle:Feed:feed.xml.php', array(
 			'title' => get_bloginfo('name'),
 			'description' => '',
 			'pageItems' => $pageItems

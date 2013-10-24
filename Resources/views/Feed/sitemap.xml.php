@@ -6,9 +6,8 @@
 	<url>
 		<loc><?php print $item->permalink(); ?></loc>
 	    <lastmod><?php print $item->date('Y-m-d'); ?></lastmod>
-	    <changefreq><?php print 'weekly'; ?></changefreq>
-	    <priority><?php print 0.7; ?></priority>
-		<expires><?php print gmdate(DATE_ATOM, mktime(0, 0, 0)); ?></expires>
+	    <changefreq>weekly</changefreq>
+	    <priority>0.7</priority>
 	</url>
 	<?php endforeach; ?>
 
