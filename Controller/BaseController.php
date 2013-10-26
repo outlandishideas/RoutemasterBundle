@@ -2,6 +2,8 @@
 
 namespace Outlandish\RoutemasterBundle\Controller;
 
+use Outlandish\OowpBundle\Helpers\OowpQuery;
+use Outlandish\OowpBundle\PostType\Post;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Templating\Loader\FilesystemLoader;
@@ -12,7 +14,7 @@ class BaseController extends SymfonyController {
 
     /**
      * Check that the requested URI matches the post permalink and redirect if not
-     * @param \ooPost $post
+     * @param Post $post
      */
     protected function redirectCanonical($post)
     {
@@ -27,12 +29,12 @@ class BaseController extends SymfonyController {
     /**
      * Create a new query object and set the global $wp_query
      * @param $args
-     * @return \ooWP_Query
+     * @return \WP_Query
      */
     protected function query($args)
     {
         global $wp_query;
-        $wp_query = new \ooWP_Query($args);
+        $wp_query = $this->get('outlandish_oowp.query_manager')->query($args);
         return $wp_query;
     }
 
@@ -41,7 +43,7 @@ class BaseController extends SymfonyController {
 	 * @param $args
 	 * @param bool $redirectCanonical true if should redirect canonically after fetching the post
 	 * @throws NotFoundHttpException
-	 * @return \ooPost
+	 * @return Post
 	 */
     protected function querySingle($args, $redirectCanonical = false)
     {
