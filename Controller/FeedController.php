@@ -15,7 +15,7 @@ class FeedController extends BaseController {
      * @Route("/sitemap.xml")
      */
     public function sitemap() {
-        $pageItems = $this->get('outlandish_oowp.query_manager')->query(array('post_type' => 'any', 'orderby' => 'date'));
+        $pageItems = $this->get('outlandish_routemaster.query_manager')->query(array('post_type' => 'any', 'orderby' => 'date'));
 
 	    $content = $this->renderView('OutlandishRoutemasterBundle:Feed:sitemap.xml.php', array('pageItems' => $pageItems));
 	    return new Response($content, 200, array('Content-type' => 'text/xml'));

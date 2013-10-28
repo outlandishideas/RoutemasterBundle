@@ -34,7 +34,7 @@ class BaseController extends SymfonyController {
     protected function query($args)
     {
         global $wp_query;
-        $wp_query = $this->get('outlandish_oowp.query_manager')->query($args);
+        $wp_query = $this->get('outlandish_routemaster.query_manager')->query($args);
         return $wp_query;
     }
 

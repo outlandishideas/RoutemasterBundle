@@ -1,5 +1,8 @@
 services:
-    kernel.listener.outlandish.unhook:
+    outlandish_routemaster.query_manager:
+        class: Outlandish\RoutemasterBundle\Manager\QueryManager
+
+    outlandish_routemaster.listener.unhook:
         class: Outlandish\RoutemasterBundle\EventListener\UnhookListener
         tags:
             - name: kernel.event_listener
