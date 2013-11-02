@@ -14,7 +14,7 @@ class WordPressInstaller {
 		define('WORDPRESS_FILE_URI', 'http://wordpress.org/latest.zip');
 
 		if (file_exists($webDir.'/wp-load.php')) {
-			echo 'Found wp-load.php in web root. Aborting.';
+			echo "WordPress already installed\n";
 			return;
 		}
 
@@ -24,7 +24,7 @@ class WordPressInstaller {
 
 		$zip = new \ZipArchive;
 		if (!$zip->open($tempFile)) {
-			echo "Failed to open ZIP file.\n";
+			echo "Failed to open ZIP file\n";
 			return;
 		}
 
@@ -65,7 +65,7 @@ class WordPressInstaller {
 			copy($webDir . '/wp-config-oi.php', $webDir . '/wp-config.php');
 		}
 
-		echo "All done.\n";
+		echo "All done\n";
 
 	}
 }

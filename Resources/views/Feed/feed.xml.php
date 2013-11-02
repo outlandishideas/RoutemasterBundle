@@ -6,15 +6,15 @@
 		<description><?php echo $description; ?></description>
 		<link><?php bloginfo('url'); ?></link>
 		<lastBuildDate><?php print date("D, d M Y H:i:s O"); ?></lastBuildDate>
-		<pubDate><?php print date("D, d M Y H:i:s O"); ?></pubDate>
+		<pubDate><?php print date("r"); ?></pubDate>
 		<atom:link href="<?php print get_bloginfo('url'); ?>/feed.rss" rel="self" type="application/rss+xml" />
 		<ttl>1800</ttl>
 
 		<?php foreach($pageItems as $item): ?>
 		<item>
-            <title><?php print $item->title(); ?></title>
-			<link><?php print $item->permalink(); ?></link>
-			<pubDate><?php print $item->date("D, d M Y H:i:s O"); ?></pubDate>
+            <title><?php echo get_the_title($item); ?></title>
+			<link><?php echo get_the_title($item); ?></link>
+			<pubDate><?php print date('r', strtotime($item->publish_date)); ?></pubDate>
 			<guid isPermaLink="false"><?php print $item->guid; ?></guid>
 			<description><?php print $item->excerpt(400, $item->metadata('job_description')); ?></description>
 		</item>

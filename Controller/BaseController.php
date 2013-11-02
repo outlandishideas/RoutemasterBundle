@@ -14,14 +14,14 @@ class BaseController extends SymfonyController {
 
     /**
      * Check that the requested URI matches the post permalink and redirect if not
-     * @param Post $post
+     * @param $post
      */
     protected function redirectCanonical($post)
     {
         $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        if ("$scheme://$_SERVER[HTTP_HOST]$path" != $post->permalink()) {
-            wp_redirect($post->permalink());
+        if ("$scheme://$_SERVER[HTTP_HOST]$path" != get_permalink($post)) {
+            wp_redirect(get_permalink($post));
             die;
         }
     }
@@ -50,11 +50,11 @@ class BaseController extends SymfonyController {
         global $post;
         $query = $this->query($args);
         //no matched posts so 404
-        if (!count($query)) {
+        if (!count($query->posts)) {
             throw new NotFoundHttpException('No posts matching query '.json_encode($args));
         }
 
-        $post = $query[0];
+        $post = $query->post;
 
         if ($redirectCanonical) {
             $this->redirectCanonical($post);
