@@ -3,9 +3,6 @@ Routemaster Bundle for WordPress
 
 **Use WordPress as the CMS backend for your Symfony application.**
 
-**NOTE**: Currently assumes the presence of the OOWP WordPress plugin which has not yet been released publicly.
-Until then, this is only of use to Outlandish staff and freelancers. Keep checking back for updates.
-
 
 Installation
 ------------
@@ -61,7 +58,7 @@ to ensure WordPress is present:
 	require 'wp-load.php';
 
 	require_once __DIR__ . '/../app/autoload.php';
-    require_once __DIR__ . '/../app/AppKernel.php';
+	require_once __DIR__ . '/../app/AppKernel.php';
 
 	//...
 
