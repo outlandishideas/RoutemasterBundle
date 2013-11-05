@@ -1,11 +1,16 @@
 Routemaster Bundle for WordPress
 ================================
 
-**Use WordPress as the CMS backend for your Symfony application.**
+**Use WordPress as the CMS backend for your Symfony 2 application.**
 
 
-Installation
-------------
+## Easy install
+
+Download [Symfony WordPress Edition](https://github.com/outlandishideas/symfony-wordpress-edition) which comes set up 
+to use this bundle, [OowpBundle](https://github.com/outlandishideas/OowpBundle) and a few useful WordPress plugins.
+
+
+## Manual install
 
 ### 1. Add to `composer.json`
 
