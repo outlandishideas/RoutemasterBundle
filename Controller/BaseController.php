@@ -50,19 +50,23 @@ class BaseController extends SymfonyController {
     {
         global $post;
 
-	    //check for post preview and override query
-	    if (isset($_GET['preview']) && $_GET['preview'] == 'true' && (isset($_GET['p']) || $_GET['preview_id'])) {
-		    $queryArgs = array(
-			    'preview' => 'true',
-			    'p' => isset($_GET['p']) ? $_GET['p'] : $_GET['preview_id']
-		    );
+	    //check for post preview and modify query
+	    if (isset($_GET['preview']) && $_GET['preview'] == 'true') {
+		    $queryArgs['preview'] = 'true';
+
+		    //for unpublished posts, override query entirely
+		    if (isset($_GET['p']) || isset($_GET['page_id'])) {
+			    $queryArgs = array_intersect_key($_GET, array_flip(array('preview', 'p', 'page_id')));
+		        $queryArgs['post_status'] = null;
+		    }
+	        //published posts user preview_id and don't need any extra help
 	    }
 
         $query = $this->query($queryArgs);
 
         //no matched posts so 404
         if (!count($query->posts)) {
-            throw new NotFoundHttpException('No posts matching query '.json_encode($queryArgs));
+            throw new NotFoundHttpException('No posts matching query '.json_encode($query->query));
         }
 
         $post = $query->post;
