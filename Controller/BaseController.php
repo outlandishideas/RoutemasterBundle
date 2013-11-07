@@ -2,12 +2,7 @@
 
 namespace Outlandish\RoutemasterBundle\Controller;
 
-use Outlandish\OowpBundle\Helpers\OowpQuery;
-use Outlandish\OowpBundle\PostType\Post;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Templating\Loader\FilesystemLoader;
-use Symfony\Component\Templating\PhpEngine;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as SymfonyController;
 
 class BaseController extends SymfonyController {
@@ -44,7 +39,7 @@ class BaseController extends SymfonyController {
 	 * @param $queryArgs
 	 * @param bool $redirectCanonical true if should redirect canonically after fetching the post
 	 * @throws NotFoundHttpException
-	 * @return Post
+	 * @return \WP_Post
 	 */
     protected function querySingle($queryArgs, $redirectCanonical = false)
     {
