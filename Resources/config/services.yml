@@ -2,9 +2,7 @@ services:
     outlandish_routemaster.query_manager:
         class: Outlandish\RoutemasterBundle\Manager\QueryManager
 
-    outlandish_routemaster.listener.unhook:
-        class: Outlandish\RoutemasterBundle\EventListener\UnhookListener
+    outlandish_routemaster.subscriber.hook:
+        class: Outlandish\RoutemasterBundle\EventListener\HookListener
         tags:
-            - name: kernel.event_listener
-              event: kernel.request
-              method: onKernelRequest
+            - name: kernel.event_subscriber
