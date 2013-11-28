@@ -17,12 +17,6 @@ to use this bundle, [OowpBundle](https://github.com/outlandishideas/OowpBundle) 
 	"require": {
 	    "outlandish/routemaster-bundle": "dev-master",
 	},
-	"repositories": [
-	    {
-	        "type": "vcs",
-	        "url": "https://github.com/outlandishideas/RoutemasterBundle.git"
-	    }
-	]
 
 ### 2. Add WordPress installer script
 
