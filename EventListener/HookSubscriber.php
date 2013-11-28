@@ -42,7 +42,7 @@ class HookSubscriber implements EventSubscriberInterface {
 	 */
 	public function checkRedirect(FilterResponseEvent $event) {
 		if ($event->getResponse() instanceof RedirectResponse) {
-			apply_filters('redirect_canonical', $event->getResponse()->getTargetUrl());
+			apply_filters('redirect_canonical', $event->getResponse()->getTargetUrl(), $event->getRequest()->getRequestUri());
 		}
 	}
 

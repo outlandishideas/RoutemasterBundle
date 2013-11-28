@@ -3,6 +3,6 @@ services:
         class: Outlandish\RoutemasterBundle\Manager\QueryManager
 
     outlandish_routemaster.subscriber.hook:
-        class: Outlandish\RoutemasterBundle\EventListener\HookListener
+        class: Outlandish\RoutemasterBundle\EventListener\HookSubscriber
         tags:
             - name: kernel.event_subscriber
