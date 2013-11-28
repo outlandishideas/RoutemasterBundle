@@ -3,6 +3,8 @@
 
 namespace Outlandish\RoutemasterBundle\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -34,6 +36,17 @@ class HookListener implements EventSubscriberInterface {
 	}
 
 	/**
+	 * Allow Hypercache to properly handle redirects
+	 *
+	 * @param FilterResponseEvent $event
+	 */
+	public function checkRedirect(FilterResponseEvent $event) {
+		if ($event->getResponse() instanceof RedirectResponse) {
+			apply_filters('redirect_canonical', $event->getResponse()->getTargetUrl());
+		}
+	}
+
+	/**
 	 * Returns an array of event names this subscriber wants to listen to.
 	 *
 	 * For instance:
@@ -50,7 +63,10 @@ class HookListener implements EventSubscriberInterface {
 		return array(
 			KernelEvents::REQUEST => array(
 				array('unhookFeedLinks'),
-				array('doTemplateRedirect')
+				array('doTemplateRedirect'),
+			),
+			KernelEvents::RESPONSE => array(
+				array('checkRedirect')
 			),
 		);
 	}
