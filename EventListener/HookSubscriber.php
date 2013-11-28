@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 /**
  * Manipulate WordPress hooks and filters to fit the Symfony request lifecycle
  */
-class HookListener implements EventSubscriberInterface {
+class HookSubscriber implements EventSubscriberInterface {
 
 	/**
 	 * Remove feed links from head of page
