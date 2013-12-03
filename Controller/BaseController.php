@@ -47,14 +47,16 @@ class BaseController extends SymfonyController {
 
 	    //check for post preview and modify query
 	    if (isset($_GET['preview']) && $_GET['preview'] == 'true') {
+		    //currently published posts just need this to show the latest autosave instead
 		    $queryArgs['preview'] = 'true';
 
 		    //for unpublished posts, override query entirely
 		    if (isset($_GET['p']) || isset($_GET['page_id'])) {
 			    $queryArgs = array_intersect_key($_GET, array_flip(array('preview', 'p', 'page_id')));
-		        $queryArgs['post_status'] = null;
 		    }
-	        //published posts user preview_id and don't need any extra help
+
+		    //for unpublished posts and posts returned to draft, allow draft status
+	        $queryArgs['post_status'] = array('draft', 'publish');
 	    }
 
         $query = $this->query($queryArgs);
